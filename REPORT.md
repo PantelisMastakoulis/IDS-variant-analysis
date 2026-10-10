@@ -1,7 +1,7 @@
 # Mutation spectrum of *IDS* constrains per-mutation editing strategies in Mucopolysaccharidosis type II
 
-**Pantelis Mastakoulis**
-National and Kapodistrian University of Athens
+**Pantelis Mastakoulis**\
+National and Kapodistrian University of Athens\
 October 2026
 
 ---
@@ -39,7 +39,7 @@ Transversions are not achievable by either chemistry.
 
 PAM availability, position within the editing window, and bystander editing were **not** modelled. The resulting figure is therefore an upper bound; the achievable fraction is necessarily lower.
 
-**Implementation.** Codon positions were extracted from the canonical *NM_000202.8* numbering. Analysis was performed in Python 3.14 using pandas and matplotlib.
+**Implementation.** ClinVar lists protein positions for two *IDS* isoforms in inconsistent order; the larger value was taken as the canonical *NM_000202.8* numbering. This assignment was verified against the `p.` notation in the `Name` field, which ClinVar reports against *NM_000202.8*, and agreed for all 347 variants carrying interpretable protein annotation. Analysis was performed in Python 3.14 using pandas and matplotlib.
 
 ---
 
@@ -84,7 +84,7 @@ Only 85 variants are chemically correctable: 54 by an adenine base editor and 31
 
 ![](results/fig2.png)
 
-**Figure 2.** Patient coverage by strategy: per-mutation base editing (upper bound 21.5%) versus mutation-agnostic whole-gene insertion (100%).
+**Figure 2.** Spectrum coverage by strategy: per-mutation base editing (upper bound 21.5%) versus mutation-agnostic whole-gene insertion (100%).
 
 ### No prevalent allele exists in *IDS*
 
@@ -124,6 +124,6 @@ Approaches that are indifferent to the patient's specific variant — insertion 
 
 ## Data and code availability
 
-Source data: ClinVar, accessed 2 October 2026.
-Analysis code: `01_explore_variants.ipynb`
+Source data: ClinVar, accessed 2 October 2026.\
+Analysis code: `01_explore_variants.ipynb`\
 Figures: `results/`
