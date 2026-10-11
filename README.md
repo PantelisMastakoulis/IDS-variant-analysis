@@ -1,9 +1,9 @@
 # IDS variant spectrum, and what it means for editing in MPS II
 
-I have Hunter syndrome (MPS II). I am a biologist, and over the past weeks I
-have been learning to work with variant data, so I used it to ask a question
-about my own disease: if genome editing is going to treat MPS II one day, how
-much of the *IDS* mutation spectrum could a base editor actually reach?
+I am a biologist, and over the past weeks I have been learning to work with
+variant data. I used it to ask a question about mucopolysaccharidosis type II:
+if genome editing is going to treat MPS II one day, how much of the *IDS*
+mutation spectrum could a base editor actually reach?
 
 ## What this is, and what it is not
 
@@ -14,11 +14,11 @@ while writing this up and while working through errors in the code; the
 analysis, the decisions about what to count and what to exclude, and any
 mistakes in it are my own.
 
-I chose this gene because it is mine. I wanted to know, in numbers rather than
-in hope, what the current generation of editors can and cannot do for the
-people who carry mutations in it — myself among them. The answer turned out to
-be narrower than I expected, and I have tried to report it exactly as I found
-it, without rounding it toward the result I would have preferred.
+I wanted to know, in numbers rather than in impressions, what the current
+generation of editors can and cannot do for the people who carry mutations in
+this gene. The answer turned out to be narrower than I expected, and I have
+tried to report it exactly as I found it, without rounding it toward the result
+I would have preferred.
 
 Everything here is built from public data, and every figure can be reproduced
 by running the notebook from top to bottom. Where I was uncertain, I have said
