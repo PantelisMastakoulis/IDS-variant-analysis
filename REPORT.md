@@ -90,7 +90,7 @@ Only 85 variants are chemically correctable: 54 by an adenine base editor and 31
 
 Codon-level analysis of 347 variants with interpretable protein annotation identified **167 distinct affected codons**, a mean of 2.08 variants per codon. The most frequently affected codon accounts for 7 variants (**2.0%** of the set); the five most frequent together account for 9.5%. Just over half of affected codons (87 of 167) carry a single reported variant.
 
-The mutational landscape is therefore dispersed rather than concentrated. Targeting even the ten most common positions would address a small minority of patients, and each would require its own reagent, guide design and validation path.
+The mutational landscape is therefore dispersed rather than concentrated. Targeting even the ten most common positions would address a small minority of the reported variants, and each would require its own reagent, guide design and validation path.
 
 ![](results/fig3_distribution.png)
 
@@ -108,7 +108,7 @@ Several constraints should be stated plainly.
 
 **The 21.5% figure is an upper bound** and should not be read as an achievable correction rate. Applying realistic constraints — PAM availability within the editing window, position of the target base within that window, and the presence of bystander bases — would reduce it, in some cases substantially. The direction of this bias is known even though its magnitude is not.
 
-**Prime editing was not modelled.** It is more permissive than base editing, accommodating transversions and small indels, and would therefore extend coverage beyond the figure reported here. It remains, however, a per-mutation approach: each variant requires its own pegRNA design and validation, so the conclusion regarding reagent scaling is unchanged.
+**Prime editing was not modelled.** It is more permissive than base editing, accommodating transversions and small indels, and would therefore extend coverage beyond the figure reported here. It remains, however, variant-specific: the edit is encoded in the pegRNA, so a different variant requires a different pegRNA, and efficiency varies enough with sequence context that each must be validated. The scaling problem is reduced rather than removed.
 
 ---
 
