@@ -150,6 +150,7 @@ Approaches that are indifferent to the patient's specific variant — insertion 
 
 ## Data and code availability
 
+Repository: <https://github.com/PantelisMastakoulis/IDS-variant-analysis>\
 Source data: ClinVar, accessed 2 October 2026.\
 Analysis code: `01_explore_variants.ipynb`\
 Figures: `results/`
