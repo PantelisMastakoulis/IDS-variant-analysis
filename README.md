@@ -5,6 +5,10 @@ variant data. I used it to ask a question about mucopolysaccharidosis type II:
 if genome editing is going to treat MPS II one day, how much of the *IDS*
 mutation spectrum could a base editor actually reach?
 
+There are two parts to this. The first asks what base-editing chemistry allows
+in principle. The second asks what is left once guide RNAs, PAM sites and
+neighbouring bases are taken into account.
+
 ## What this is, and what it is not
 
 This is not supervised research and it has not been reviewed by anyone. I am a
@@ -21,7 +25,7 @@ tried to report it exactly as I found it, without rounding it toward the result
 I would have preferred.
 
 Everything here is built from public data, and every figure can be reproduced
-by running the notebook from top to bottom. Where I was uncertain, I have said
+by running the notebooks from top to bottom. Where I was uncertain, I have said
 so. Any errors are mine, and I would rather be corrected than left comfortable.
 
 ## What I did
@@ -52,6 +56,34 @@ So a per-mutation base-editing strategy does not scale here: you would need a
 new reagent for almost every variant, and four fifths of the reported spectrum
 lies outside conventional ABE and CBE chemistry altogether.
 
+## The second question: how far below the ceiling the real number sits
+
+21.5% is a ceiling, not a rate. I said so in the first report, and then went
+back to find out how far below it reality sits.
+
+To correct a variant, a guide RNA has to place the target base inside the
+editing window of the editor, and a PAM has to sit in the right place on the
+same strand. I took the *IDS* reference sequence from GRCh38, checked that
+every one of the 229 single-nucleotide variants sat where ClinVar said it did —
+all 229 agreed — and then asked, for each of the 85 correctable variants,
+whether such a guide exists.
+
+**Twenty-two do.** That is 5.6% of the spectrum, not 21.5%. Sixty-three have no
+usable guide at all.
+
+Then there is bystander editing. If the window holds a second base of the same
+kind, it changes too. Only **five** of the 22 have a guide that would edit the
+target base and nothing else — **1.3%** of the spectrum.
+
+Relaxing the PAM requirement helps a great deal and then stops: even an editor
+with no PAM requirement whatsoever reaches only 13.2% cleanly. Narrowing the
+editing window from five positions to three lifts that to 18.0%. Neither
+reaches 21.5%, because that ceiling belongs to the chemistry and not to any
+reagent.
+
+So the first report was generous. The distance between what base editing
+reaches and what a whole-gene approach would reach is wider than it looked.
+
 ## What I am not claiming
 
 ClinVar tells you what has been *reported*, not how common a variant is in
@@ -63,6 +95,11 @@ There is also a stretch of the gene, c.419 to c.1180, with no variants in my
 filtered set at all — I do not think that is biology, more likely
 under-reporting or the *IDS2* pseudogene making assignment hard nearby. If
 anything, that makes the spectrum look less diverse than it really is.
+
+The second analysis models geometry, not kinetics. Editing windows have soft
+edges in reality, I did not look at off-target binding, and I counted any
+bystander as disqualifying without checking whether it would change the
+protein. All of this is set out in the second report.
 
 And I did not model prime editing, which would extend the range of correctable
 variants, including transversions and small indels. It remains
@@ -87,12 +124,14 @@ where both are available, with no exceptions.
 
 | | |
 |---|---|
-| `REPORT.pdf` | The write-up, with figures |
-| `01_explore_variants.ipynb` | The analysis, start to finish |
-| `data/` | ClinVar export, 2 October 2026 |
-| `results/` | Figures |
+| `REPORT.pdf` | What base-editing chemistry allows in principle |
+| `REPORT2.pdf` | What is left once guides, PAM sites and bystanders are counted |
+| `01_explore_variants.ipynb` | The first analysis |
+| `02_pam_accessibility.ipynb` | The second analysis |
+| `data/` | ClinVar export, and the *IDS* reference sequence from GRCh38 |
+| `results/` | Figures, and the guide list for the 22 reachable variants |
 
-Python 3.11+, pandas and matplotlib. The notebook runs top to bottom.
+Python 3.11+, pandas and matplotlib. Both notebooks run top to bottom.
 
 ---
 
