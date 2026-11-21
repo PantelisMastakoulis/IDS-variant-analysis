@@ -28,6 +28,10 @@ Everything here is built from public data, and every figure can be reproduced
 by running the notebooks from top to bottom. Where I was uncertain, I have said
 so. Any errors are mine, and I would rather be corrected than left comfortable.
 
+If you read one thing here, read [How I did this, and why](How_I_did_this_and_why.pdf)
+— why I chose this question, how I decided each step, the two bugs I found and
+how I caught them, and what I was careful not to claim.
+
 ## What I did
 
 I pulled every pathogenic and likely pathogenic *IDS* variant from ClinVar
@@ -124,6 +128,7 @@ where both are available, with no exceptions.
 
 | | |
 |---|---|
+| `How_I_did_this_and_why.pdf` | The reasoning behind every decision, and the two errors I caught |
 | `REPORT.pdf` | What base-editing chemistry allows in principle |
 | `REPORT2.pdf` | What is left once guides, PAM sites and bystanders are counted |
 | `01_explore_variants.ipynb` | The first analysis |
