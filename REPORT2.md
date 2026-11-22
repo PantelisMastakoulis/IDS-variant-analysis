@@ -12,6 +12,10 @@ An earlier analysis of this dataset put an upper bound of 21.5% on the share of 
 
 This analysis closes that gap. Once PAM availability, the editing window and bystander editing are taken into account, the figure for a conventional SpCas9 base editor is **1.3%**. Relaxing the PAM requirement raises it to 13.2% at best. Narrowing the editing window raises it further, to 18.0%. Neither reaches 21.5%, because that ceiling is set by the chemistry of the editors and nothing about guide design can move it.
 
+A further step asks whether each bystander actually changes the protein. Eleven
+do not, which raises the SpCas9 figure from 1.3% to **2.5%**. The PAM and window
+figures above were not recomputed on that basis and would also rise.
+
 ---
 
 ## Rationale
@@ -63,7 +67,41 @@ Of the 85 chemically correctable variants, 63 have no SpCas9 guide at all. For t
 
 The bystander filter then removes seventeen more. Five variants have the target base alone in the window. Twelve have one other base that would be edited alongside it, three have two, and two have three.
 
-Those twelve are not necessarily lost. Whether a second edit matters depends on what it does to the protein, and a change that leaves the amino acid unaltered would be harmless. That was not examined here, and it is left open rather than counted either way.
+Those seventeen are not necessarily lost. Whether a second edit matters depends on what it does to the protein, and a bystander that leaves the amino acid unaltered changes nothing about the product. The next section examines each of them.
+
+### Eleven bystanders leave the protein unchanged
+
+A bystander disqualifies a guide only if it changes the protein. Each bystander
+in the SpCas9 guide list was therefore placed in its codon and translated.
+
+The reading frame was reconstructed from the protospacer itself: the target base
+has a known position both in the protospacer and in the coding sequence, which
+fixes the correspondence between the two for every other base in the window.
+*IDS* is read from the minus strand, so a guide acting on the plus strand runs
+opposite to the coding direction and its bases must be complemented. The
+reconstruction was checked before use — for all 24 guides whose variant carries
+a protein annotation in ClinVar, the rebuilt codon translates to the amino acid
+and codon number ClinVar reports.
+
+Thirty bystander edits appear across the 27 guides. Four belong to two variants
+with intronic targets, which have no codon and were not assessed. Of the
+remaining twenty-six, **eleven are synonymous** and fifteen change the amino
+acid. None creates a premature stop.
+
+| | Variants | Share of 395 |
+|---|---:|---:|
+| With an SpCas9 guide | 22 | 5.6% |
+| With a guide that edits nothing else | 5 | 1.3% |
+| **With a guide that leaves the protein unchanged** | **10** | **2.5%** |
+| Intronic target, not assessed | 2 | — |
+
+Five variants gain a guide this way: c.140T>C, c.325T>C, c.1420C>T, c.1561G>A
+and c.1568A>G. The count doubles, and it moves in favour of base editing —
+against the conclusion the rest of this report reaches.
+
+A synonymous change is not the same as a harmless one. It leaves the amino acid
+sequence intact, which is all that is claimed here; effects on splicing, on mRNA
+stability or on translation were not examined.
 
 ### PAM flexibility helps a great deal, and then stops
 
@@ -104,7 +142,7 @@ For SpCas9 in particular, narrowing the window costs nothing at all. The number 
 
 **Off-target activity was not examined.** Only the *IDS* locus was looked at, so nothing here says whether a guide would also bind elsewhere in the genome.
 
-**Bystander consequences were not evaluated.** Any bystander was counted as disqualifying, whether or not it would change the protein. The twelve variants with a single bystander would need checking at the codon level before being excluded.
+**Bystander consequences were evaluated only at the level of the amino acid, and only for SpCas9.** A synonymous bystander is counted as leaving the protein unchanged, which says nothing about splicing, mRNA stability or translation. Two variants with intronic targets were not assessed at all. The PAM and window results above still apply the strict rule, under which any bystander disqualifies, and would rise if recomputed on this basis.
 
 **The reference sequence was used throughout.** A patient's protospacer differs from the reference at the target position. That does not affect whether a PAM exists, but it does affect how well the guide binds.
 
@@ -122,7 +160,7 @@ There are two levers available to anyone building better editors, and they run o
 
 A strategy that does not care which variant a patient carries is not bound by any of this. Guides, windows and PAMs have no bearing on the insertion of a complete working copy of the gene, which covers the reported spectrum with one reagent whatever the variant. That remains a claim about coverage, not about efficacy, delivery or safety.
 
-What this analysis adds is the size of the gap. For *IDS*, with the reagents that exist today, it runs from 1.3% to 100%.
+What this analysis adds is the size of the gap. For *IDS*, with the reagents that exist today, it runs from 2.5% to 100%.
 
 ---
 
@@ -148,6 +186,6 @@ What this analysis adds is the size of the gap. For *IDS*, with the reagents tha
 
 Repository: https://github.com/PantelisMastakoulis/IDS-variant-analysis \
 Source data: ClinVar, accessed 2 October 2026; reference sequence from GRCh38 via the UCSC Genome Browser.\
-Analysis code: `02_pam_accessibility.ipynb`\
+Analysis code: `02_pam_accessibility.ipynb`, `03_bystander_consequences.ipynb`\
 Preceding report: `REPORT.md`\
 Figures: `results/`
