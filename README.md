@@ -79,6 +79,14 @@ Then there is bystander editing. If the window holds a second base of the same
 kind, it changes too. Only **five** of the 22 have a guide that would edit the
 target base and nothing else — **1.3%** of the spectrum.
 
+But a bystander only disqualifies a guide if it changes the protein. I went
+back and checked: I rebuilt the reading frame from each guide, applied the
+change the editor would make, and translated it. Eleven of the bystanders leave
+the amino acid unchanged, which lifts the count from five variants to **ten** —
+**2.5%** of the spectrum. Two variants have intronic targets and are not
+assessed this way. The number moved in favour of base editing, against the
+argument I had been making.
+
 Relaxing the PAM requirement helps a great deal and then stops: even an editor
 with no PAM requirement whatsoever reaches only 13.2% cleanly. Narrowing the
 editing window from five positions to three lifts that to 18.0%. Neither
@@ -101,9 +109,10 @@ under-reporting or the *IDS2* pseudogene making assignment hard nearby. If
 anything, that makes the spectrum look less diverse than it really is.
 
 The second analysis models geometry, not kinetics. Editing windows have soft
-edges in reality, I did not look at off-target binding, and I counted any
-bystander as disqualifying without checking whether it would change the
-protein. All of this is set out in the second report.
+edges in reality, and I did not look at off-target binding. Where a bystander
+leaves the amino acid unchanged I treat the guide as clean, which says nothing
+about any effect on splicing or on translation. All of this is set out in the
+second report.
 
 And I did not model prime editing, which would extend the range of correctable
 variants, including transversions and small indels. It remains
@@ -133,10 +142,11 @@ where both are available, with no exceptions.
 | `REPORT2.pdf` | What is left once guides, PAM sites and bystanders are counted |
 | `01_explore_variants.ipynb` | The first analysis |
 | `02_pam_accessibility.ipynb` | The second analysis |
+| `03_bystander_consequences.ipynb` | Whether each bystander edit changes the protein |
 | `data/` | ClinVar export, and the *IDS* reference sequence from GRCh38 |
 | `results/` | Figures, and the guide list for the 22 reachable variants |
 
-Python 3.11+, pandas and matplotlib. Both notebooks run top to bottom.
+Python 3.11+, pandas and matplotlib. All three notebooks run top to bottom.
 
 ---
 
