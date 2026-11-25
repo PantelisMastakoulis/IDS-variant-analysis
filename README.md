@@ -11,26 +11,11 @@ neighbouring bases are taken into account.
 
 ## What this is, and what it is not
 
-This is not supervised research and it has not been reviewed by anyone. I am a
-biologist, currently doing a master's in bioinformatics, and the code here is
-plain — written to be checked rather than to be clever. I used an AI assistant
-while writing this up and while working through errors in the code; the
-analysis, the decisions about what to count and what to exclude, and any
-mistakes in it are my own.
+This is not supervised research and it has not been formally peer-reviewed. I am a biologist, currently doing a master's in bioinformatics, and the code here is plain — written to be checked rather than to be clever. The question is mine, and so are the decisions about what to count and what to exclude.
 
-I wanted to know, in numbers rather than in impressions, what the current
-generation of editors can and cannot do for the people who carry mutations in
-this gene. The answer turned out to be narrower than I expected, and I have
-tried to report it exactly as I found it, without rounding it toward the result
-I would have preferred.
+I developed the analysis step by step, making my own attempts at writing the code and working through the problems I encountered. I used an AI assistant to help identify errors, correct mistakes and refine the code where needed. My aim was to understand the process, not simply to obtain results. I ran every cell myself and examined the outputs. I also wrote the reports in English, using AI to improve their grammar, wording and clarity.
 
-Everything here is built from public data, and every figure can be reproduced
-by running the notebooks from top to bottom. Where I was uncertain, I have said
-so. Any errors are mine, and I would rather be corrected than left comfortable.
-
-If you read one thing here, read [How I did this, and why](How_I_did_this_and_why.pdf)
-— why I chose this question, how I decided each step, the two bugs I found and
-how I caught them, and what I was careful not to claim.
+Any mistakes here are mine.
 
 ## What I did
 
