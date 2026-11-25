@@ -87,14 +87,29 @@ the amino acid unchanged, which lifts the count from five variants to **ten** �
 assessed this way. The number moved in favour of base editing, against the
 argument I had been making.
 
-Relaxing the PAM requirement helps a great deal and then stops: even an editor
-with no PAM requirement whatsoever reaches only 13.2% cleanly. Narrowing the
-editing window from five positions to three lifts that to 18.0%. Neither
-reaches 21.5%, because that ceiling belongs to the chemistry and not to any
-reagent.
+Whether a bystander matters at all turns out to depend almost entirely on where
+it falls inside the codon. In the third position it leaves the amino acid
+unchanged 96% of the time; in the second position it did so in none of 115
+cases, which is what the genetic code requires. The editing window knows nothing
+about codons, so where a bystander lands is blind — but what it does is not.
 
-So the first report was generous. The distance between what base editing
-reaches and what a whole-gene approach would reach is wider than it looked.
+Relaxing the PAM requirement helps a great deal and then stops: even an editor
+with no PAM requirement whatsoever reaches only 13.2% with a strictly
+bystander-free guide, or **16.5%** judged at the level of the protein. Narrowing
+the editing window from five positions to three lifts that to **19.5%** — just
+over ninety per cent of what the chemistry allows, and never past 21.5%, because
+that ceiling belongs to the chemistry and not to any reagent.
+
+Which means the bystander problem is mostly a question of how wide the editing
+window is. Of the fifteen variants that no PAM reaches cleanly, fourteen are
+blocked by a single neighbouring base, and a narrower window recovers ten of
+them. **Five** variants in the whole gene carry a protein-changing bystander in
+every possible placement, and no amount of guide design reaches those.
+
+So the first report was generous, but not in the way I expected. Two of the three
+constraints turned out to be engineering problems that give way. The one that
+does not is the chemistry: base editors install transitions, and four fifths of
+the reported spectrum needs something else.
 
 ## What I am not claiming
 
@@ -111,8 +126,10 @@ anything, that makes the spectrum look less diverse than it really is.
 The second analysis models geometry, not kinetics. Editing windows have soft
 edges in reality, and I did not look at off-target binding. Where a bystander
 leaves the amino acid unchanged I treat the guide as clean, which says nothing
-about any effect on splicing or on translation. All of this is set out in the
-second report.
+about any effect on splicing or on translation. And since fourteen of the
+fifteen hardest variants are decided by a single base, the numbers lean on that
+hard-edged window more than I would like. All of this is set out in the second
+report.
 
 And I did not model prime editing, which would extend the range of correctable
 variants, including transversions and small indels. It remains
@@ -143,10 +160,11 @@ where both are available, with no exceptions.
 | `01_explore_variants.ipynb` | The first analysis |
 | `02_pam_accessibility.ipynb` | The second analysis |
 | `03_bystander_consequences.ipynb` | Whether each bystander edit changes the protein |
+| `04_pam_consequences.ipynb` | The same question across every PAM and every window |
 | `data/` | ClinVar export, and the *IDS* reference sequence from GRCh38 |
-| `results/` | Figures, and the guide list for the 22 reachable variants |
+| `results/` | Figures, the guide list for the 22 reachable variants, and the summary tables |
 
-Python 3.11+, pandas and matplotlib. All three notebooks run top to bottom.
+Python 3.11+, pandas and matplotlib. All four notebooks run top to bottom.
 
 ---
 

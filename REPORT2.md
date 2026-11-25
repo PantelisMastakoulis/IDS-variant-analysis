@@ -12,9 +12,13 @@ An earlier analysis of this dataset put an upper bound of 21.5% on the share of 
 
 This analysis closes that gap. Once PAM availability, the editing window and bystander editing are taken into account, the figure for a conventional SpCas9 base editor is **1.3%**. Relaxing the PAM requirement raises it to 13.2% at best. Narrowing the editing window raises it further, to 18.0%. Neither reaches 21.5%, because that ceiling is set by the chemistry of the editors and nothing about guide design can move it.
 
-A further step asks whether each bystander actually changes the protein. Eleven
-do not, which raises the SpCas9 figure from 1.3% to **2.5%**. The PAM and window
-figures above were not recomputed on that basis and would also rise.
+A further step asks whether each bystander actually changes the protein. Judged
+that way, the SpCas9 figure rises from 1.3% to **2.5%**, the PAM-less figure from
+13.2% to **16.5%**, and a three-position window reaches **19.5%** — ninety per cent
+of the chemical ceiling. The bystander barrier is therefore largely a matter of
+window width rather than of sequence: fourteen of the fifteen variants that no
+PAM can reach fail by a single neighbouring base. What does not move is the
+ceiling itself.
 
 ---
 
@@ -86,7 +90,7 @@ and codon number ClinVar reports.
 Thirty bystander edits appear across the 27 guides. Four belong to two variants
 with intronic targets, which have no codon and were not assessed. Of the
 remaining twenty-six, **eleven are synonymous** and fifteen change the amino
-acid. None creates a premature stop.
+acid. None of these creates a premature stop.
 
 | | Variants | Share of 395 |
 |---|---:|---:|
@@ -132,17 +136,139 @@ Narrowing the editing window from five positions to three raises clean coverage 
 
 For SpCas9 in particular, narrowing the window costs nothing at all. The number of variants with any guide falls from 22 to 10, but the number with a clean guide does not fall — it rises slightly, from five to seven. The guides lost to a narrower window were, in this dataset, guides that would have edited more than the target.
 
+### The same two ladders, counted at the protein level
+
+The two sections above apply the strict rule, under which any bystander
+disqualifies a guide. Recomputed at the level of the amino acid, both ladders
+move.
+
+| Editor | PAM | Strict | Protein level | Share of 395 | Not assessed |
+|---|---|---:|---:|---:|---:|
+| SpCas9 | NGG | 5 | **10** | 2.5% | 2 |
+| SpG | NG | 20 | **31** | 7.8% | 6 |
+| SpRY | NRN | 34 | **46** | 11.6% | 5 |
+| no PAM requirement | — | 52 | **65** | 16.5% | 5 |
+
+![](results/fig7_protein.png)
+
+**Figure 7.** Variants with a bystander-free guide, and with a guide that leaves the protein unchanged, as the PAM requirement is relaxed.
+
+Narrowing the window does the same, and goes further:
+
+| Window | Width | Strict | Protein level | Share of 395 | Not assessed |
+|---|---:|---:|---:|---:|---:|
+| 4–8 | 5 | 52 | **65** | 16.5% | 5 |
+| 4–7 | 4 | 63 | **72** | 18.2% | 5 |
+| 4–6 | 3 | 71 | **77** | 19.5% | 3 |
+| 5–7 | 3 | 71 | **77** | 19.5% | 3 |
+
+At the narrowest window with no PAM requirement, 77 of the 85 chemically
+correctable variants have a guide that leaves the protein unchanged — just over
+ninety per cent of the chemical ceiling, and 19.5% of the reported spectrum.
+Three more have intronic targets and cannot be assessed this way. Five remain.
+
+A guide with no bystander at all leaves the protein unchanged by definition, so
+the protein-level column can never fall below the strict one. It does not, in any
+row of either table.
+
+### What decides whether a bystander matters
+
+Across every placement allowed without a PAM requirement, 396 bystander edits
+fall inside the editing window of a variant with a coding target. Their position
+within the codon decides almost everything about them.
+
+| Position in codon | Bystanders | Synonymous | Share |
+|---|---:|---:|---:|
+| First | 149 | 20 | 13% |
+| Second | 115 | **0** | **0%** |
+| Third | 132 | 127 | **96%** |
+
+The editing window knows nothing about codons, and the bystanders fall across the
+three positions almost evenly — 149, 115 and 132. What becomes of them does not.
+A bystander in the third position is harmless in ninety-six cases out of a
+hundred. In the second position it was harmless in none of 115, which is what the
+genetic code requires: outside the stop codons, no transition at the second
+position of a codon leaves the amino acid unchanged.
+
+The placement is blind. The consequence is not.
+
+This also makes the question answerable without translating anything. The phase
+of a bystander within its codon predicts what it will do.
+
+Of the 396, 147 are synonymous, 239 change the amino acid, and **ten create a
+premature stop**.
+
+### The two editors are not equivalent
+
+All ten premature stops arise from a cytosine editor. An adenine editor produced
+none in 196 bystanders.
+
+This follows from the code rather than from the data. On the coding strand a
+cytosine editor writes C→T or G→A, which turns CAA into TAA, CAG into TAG, CGA
+into TGA, and TGG into TGA or TAG. An adenine editor writes A→G or T→C: the first
+cannot create the thymine that every stop codon begins with, and the second
+destroys it.
+
+The two also differ in where their bystanders land.
+
+| Position in codon | ABE | | CBE | |
+|---|---:|---:|---:|---:|
+| First | 71 | 36% | 78 | 39% |
+| Second | 77 | **39%** | 38 | 19% |
+| Third | 48 | 25% | 84 | **42%** |
+
+An adenine editor acts on A and T, a cytosine editor on C and G, and these are
+not distributed alike across the three codon positions in this gene. The result
+is a mirror image: the adenine editor concentrates its bystanders where the code
+is strict, the cytosine editor where it is permissive. Across all 396, 48.5% of
+cytosine-editor bystanders are synonymous against 25.5% for the adenine editor.
+
+The two editors therefore carry different kinds of risk rather than different
+amounts of it. A cytosine editor is forgiven about twice as often, and carries
+every one of the catastrophic outcomes. An adenine editor is forgiven less often
+and produced no catastrophic outcome at all. Whether this holds in other genes
+was not examined.
+
+### Five variants no geometry reaches
+
+With the five-position window and no PAM requirement, fifteen variants have a
+guide but none that leaves the protein unchanged. Fourteen of the fifteen fail by
+a single harmful bystander; the remaining one fails by two. None is buried deeply.
+
+That margin is what a narrower window removes. At three positions, ten of the
+fifteen are recovered and five remain:
+
+| Variant | Codon | Editor |
+|---|---|---|
+| c.134A>G | Asp45 | CBE |
+| c.136G>A | Asp46 | ABE |
+| c.215T>C | Leu72 | CBE |
+| c.283A>G | Arg95 | CBE |
+| c.328A>G | Arg110 | CBE |
+
+These five carry a protein-changing bystander in every placement of the window,
+on either strand, under any PAM. No improvement in guide design or in nuclease
+engineering reaches them; only a different mechanism would.
+
+All five fall between codons 45 and 110, in the amino-terminal cluster of the
+reported spectrum. The narrower window recovered every one of the five that lay
+in the carboxy-terminal cluster, leaving that half of the gene with none. Four of
+the five are cytosine editors, against 36% of the editable set, but five is too
+small a number to support a claim.
+
 ---
 
 ## Limitations
 
-**The model is geometric, not kinetic.** The editing window is treated as a hard edge, whereas real editors lose activity gradually across it. A variant counted as reachable may in practice be edited poorly, and one counted as unreachable may be edited a little. This error does not run in one direction only.
+**The model is geometric, not kinetic.** The editing window is treated as a hard edge, whereas real editors lose activity gradually across it. A variant counted as reachable may in practice be edited poorly, and one counted as unreachable may be edited a little. This error does not run in one direction only, and it weighs more heavily on the results above than on the earlier ones: fourteen of the fifteen variants that no PAM reaches are decided by a single base, and a base at the edge of the window is the one an editor is least likely to touch.
 
 **Only SpCas9 geometry was modelled.** Editors built on other nucleases use different protospacer lengths and different windows, and were not considered.
 
 **Off-target activity was not examined.** Only the *IDS* locus was looked at, so nothing here says whether a guide would also bind elsewhere in the genome.
 
-**Bystander consequences were evaluated only at the level of the amino acid, and only for SpCas9.** A synonymous bystander is counted as leaving the protein unchanged, which says nothing about splicing, mRNA stability or translation. Two variants with intronic targets were not assessed at all. The PAM and window results above still apply the strict rule, under which any bystander disqualifies, and would rise if recomputed on this basis.
+**Bystander consequences were evaluated only at the level of the amino acid.** A synonymous bystander is counted as leaving the protein unchanged, which says nothing about splicing, mRNA stability or translation. Where a bystander could not be judged — an intronic target, or a codon that does not fit inside the twenty bases of the protospacer — the variant is reported separately as not assessed, rather than counted on either side.
+
+**The bystander counts in the second half are taken from the placements allowed without a PAM requirement.** That set contains every possible placement of the window, each one once. Counting across the four PAM requirements instead would count the same guide up to four times.
 
 **The reference sequence was used throughout.** A patient's protospacer differs from the reference at the target position. That does not affect whether a PAM exists, but it does affect how well the guide binds.
 
@@ -154,13 +280,15 @@ For SpCas9 in particular, narrowing the window costs nothing at all. The number 
 
 ## Implication
 
-The earlier report argued that allelic diversity puts MPS II beyond the reach of per-mutation correction at scale, and that 21.5% was an upper bound. Both hold, and the second is firmer than it was.
+The earlier report argued that allelic diversity puts MPS II beyond the reach of per-mutation correction at scale, and that 21.5% was an upper bound. Both hold. What has changed is which of the three constraints does the work.
 
-There are two levers available to anyone building better editors, and they run out at different points. PAM flexibility takes clean coverage from 1.3% to 13.2% — a tenfold gain, and the larger of the two. A narrower editing window takes it from 13.2% to 18.0%. Neither reaches 21.5%, and nothing goes past it, because the restriction of base editors to transitions belongs to the chemistry rather than to any particular reagent.
+Two of them are engineering problems, and both give way. PAM flexibility takes protein-level coverage from 2.5% to 16.5%. A narrower window takes it to 19.5% — just over ninety per cent of what the chemistry allows. Counted strictly, with any bystander disqualifying a guide, the same two levers stop at 18.0%. Either way, the bystander barrier turns out to be largely a question of how wide the window is, and fourteen of the fifteen variants it still blocks are blocked by a single base.
+
+The third constraint does not give way at all. Base editors install transitions, four fifths of the reported spectrum needs something else, and no guide, window or nuclease changes that. Nor does the dispersion of the spectrum across 167 codons, which is a property of the gene.
 
 A strategy that does not care which variant a patient carries is not bound by any of this. Guides, windows and PAMs have no bearing on the insertion of a complete working copy of the gene, which covers the reported spectrum with one reagent whatever the variant. That remains a claim about coverage, not about efficacy, delivery or safety.
 
-What this analysis adds is the size of the gap. For *IDS*, with the reagents that exist today, it runs from 2.5% to 100%.
+What this analysis adds is the size of the gap and where it comes from. For *IDS*, with an SpCas9 base editor as it exists today, it runs from 2.5% to 100%. With every geometric constraint relaxed to its limit it still runs from 19.5% to 100%, and that remainder is chemistry.
 
 ---
 
@@ -186,6 +314,6 @@ What this analysis adds is the size of the gap. For *IDS*, with the reagents tha
 
 Repository: https://github.com/PantelisMastakoulis/IDS-variant-analysis \
 Source data: ClinVar, accessed 2 October 2026; reference sequence from GRCh38 via the UCSC Genome Browser.\
-Analysis code: `02_pam_accessibility.ipynb`, `03_bystander_consequences.ipynb`\
+Analysis code: `02_pam_accessibility.ipynb`, `03_bystander_consequences.ipynb`, `04_pam_consequences.ipynb`\
 Preceding report: `REPORT.md`\
 Figures: `results/`
